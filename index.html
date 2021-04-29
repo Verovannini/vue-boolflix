@@ -14,7 +14,24 @@
 </head>
 <body>
     <div id="root">
-        
+        <div class="container">
+            <!-- Start Searchbar -->
+            <div class="searchbar">
+                <label for="search-input">Search</label>
+                <input v-model="userSearch" @keyup.enter="searchMovie" type="text" id="search-input" placeholder="Search">
+                <button @click="searchMovie">Search</button>
+            </div>
+            <!-- End Searchbar -->
+
+            <!-- Start Movie -->
+            <ul v-for="movie in searchedMovies" class="movie">
+                <li>{{ movie.title }}</li>
+                <li>{{ movie.original_title }}</li>
+                <li>{{ movie.original_language }}</li>
+                <li>{{ movie.vote_average }}</li>
+            </ul>
+            <!-- End Movie -->
+        </div>
     </div>
 
 
