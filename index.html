@@ -25,10 +25,15 @@
 
             <!-- Start Movie -->
             <ul v-for="movie in searchedMovies" class="movie">
-                <li>{{ movie.title }}</li>
-                <li>{{ movie.original_title }}</li>
-                <li>{{ movie.original_language }}</li>
-                <li>{{ movie.vote_average }}</li>
+                <li>Title: {{ movie.title }}</li>
+                <li>Original Title: {{ movie.original_title }}</li>
+                <li class="flag">
+                    Language:
+                    <img v-if="movie.original_language in flags" :src="flags[movie.original_language]" :alt="movie.original_language">
+            
+                    <div v-else>{{ movie.original_language }}</div>
+                </li>
+                <li>Vote: {{ movie.vote_average }}</li>
             </ul>
             <!-- End Movie -->
         </div>

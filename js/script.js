@@ -7,6 +7,15 @@ var app = new Vue (
 
             // Ricerca dell'utente nella input
             userSearch: '',
+
+            // Array di link di bandiere
+            flags: {
+                it: 'https://lipis.github.io/flag-icon-css/flags/4x3/it.svg',
+                en: 'https://lipis.github.io/flag-icon-css/flags/4x3/gb.svg',
+                fr: 'https://lipis.github.io/flag-icon-css/flags/4x3/fr.svg',
+                de: 'https://lipis.github.io/flag-icon-css/flags/4x3/de.svg',
+                es: 'https://lipis.github.io/flag-icon-css/flags/4x3/es.svg'
+            }
         },
         methods: {
             // Funzione che manda una chiamata all'API quando l'utente preme il button o preme enter
