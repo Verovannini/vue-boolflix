@@ -3,9 +3,7 @@ var app = new Vue (
         el: '#root',
         data: {
             // Array che viene popolato dalla chiamata all'API
-            searchedMovies: [],
-
-            searchedSeries: [],
+            searchedMoviesAndSeries: [],
 
             // Ricerca dell'utente nella input
             userSearch: '',
@@ -25,17 +23,14 @@ var app = new Vue (
             // Funzione che manda una chiamata all'API quando l'utente preme il button o preme enter
             searchMovieAndSeries() {
                 if ( this.userSearch != '' ) {
-                    this.callApi('https://api.themoviedb.org/3/search/movie', 'movie');
-
-                    this.callApi('https://api.themoviedb.org/3/search/tv', 'tv');
+                    this.callApi('https://api.themoviedb.org/3/search/multi');
                 }
             },
 
             // Funzione che effettua una chiamata all'API
             // 
             // endpoint --> endpoint per effettuare la chiamata
-            // type --> una stringa che deve essere 'movie' se voglio popolare l'array dei film o 'tv' se voglio popolare quello delle serie
-            callApi(endpoint, type) {
+            callApi(endpoint) {
                 axios
                     .get( endpoint , {
                         params: {
@@ -45,13 +40,9 @@ var app = new Vue (
                     })
                     .then( (response) => {
                         const result = response.data;
-                        if ( type == 'movie' ) {
-                            this.searchedMovies = result.results;
-                        } else if ( type == 'tv' ) {
-                            this.searchedSeries = result.results;
-                        }      
+                        this.searchedMoviesAndSeries = result.results;
                     });
-            },
+            }
         }
     }
 );
