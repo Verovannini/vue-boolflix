@@ -51,7 +51,7 @@ var app = new Vue (
                             this.searchedSeries = result.results;
                         }      
                     });
-            }
+            },
         }
     }
 );

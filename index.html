@@ -28,13 +28,21 @@
                 <li><img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" :alt="movie.title"></li>
                 <li>Title: {{ movie.title }}</li>
                 <li>Original Title: {{ movie.original_title }}</li>
+
+                <!-- Language or flag -->
                 <li class="flag">
                     Language:
                     <img v-if="movie.original_language in flags" :src="flags[movie.original_language]" :alt="movie.original_language">
             
                     <div v-else>{{ movie.original_language }}</div>
                 </li>
-                <li>Vote: {{ movie.vote_average }}</li>
+
+                <!-- Vote -->
+                <li>
+                    Vote: 
+                    <span v-for="number in Math.ceil(movie.vote_average / 2)" class="yellow-star"><i class="fas fa-star"></i></span>
+                    <span v-for="number in (5 - Math.ceil(movie.vote_average / 2))"><i class="fas fa-star"></i></span>
+                </li>
             </ul>
             <!-- End Movie -->
 
@@ -43,13 +51,20 @@
                 <li><img :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`" :alt="serie.name"></li>
                 <li>Name: {{ serie.name }}</li>
                 <li>Original Name: {{ serie.name }}</li>
+
+                <!-- Language or flag -->
                 <li class="flag">
                     Language:
                     <img v-if="serie.original_language in flags" :src="flags[serie.original_language]" :alt="serie.original_language">
             
                     <div v-else>{{ serie.original_language }}</div>
                 </li>
-                <li>Vote: {{ serie.vote_average }}</li>
+
+                <!-- Vote -->
+                <li>
+                    Vote: {{ serie.vote_average }}
+                    <span v-for="number in 5"><i class="fas fa-star"></i></span>
+                </li>
             </ul>
             <!-- End Series -->
         </div>
