@@ -25,18 +25,17 @@ var app = new Vue (
             // Funzione che manda una chiamata all'API quando l'utente preme il button o preme enter
             searchMovieAndSeries() {
                 if ( this.userSearch != '' ) {
-                    this.callApi('https://api.themoviedb.org/3/search/movie', this.searchedMovies);
-                    console.log(this.searchedMovies);
+                    this.callApi('https://api.themoviedb.org/3/search/movie', 'movie');
 
-                    this.callApi('https://api.themoviedb.org/3/search/tv', this.searchedSeries);
-                    console.log(this.searchedSeries);
+                    this.callApi('https://api.themoviedb.org/3/search/tv', 'tv');
                 }
             },
 
             // Funzione che effettua una chiamata all'API
             // 
             // endpoint --> endpoint per effettuare la chiamata
-            callApi(endpoint, array) {
+            // type --> una stringa che deve essere 'movie' se voglio popolare l'array dei film o 'tv' se voglio popolare quello delle serie
+            callApi(endpoint, type) {
                 axios
                     .get( endpoint , {
                         params: {
@@ -46,8 +45,11 @@ var app = new Vue (
                     })
                     .then( (response) => {
                         const result = response.data;
-                        array = result.results;
-                        console.log('array', array);
+                        if ( type == 'movie' ) {
+                            this.searchedMovies = result.results;
+                        } else if ( type == 'tv' ) {
+                            this.searchedSeries = result.results;
+                        }      
                     });
             }
         }

@@ -36,6 +36,20 @@
                 <li>Vote: {{ movie.vote_average }}</li>
             </ul>
             <!-- End Movie -->
+
+            <!-- Start Series -->
+            <ul v-for="serie in searchedSeries" class="movie">
+                <li>Name: {{ serie.name }}</li>
+                <li>Original Name: {{ serie.name }}</li>
+                <li class="flag">
+                    Language:
+                    <img v-if="serie.original_language in flags" :src="flags[serie.original_language]" :alt="serie.original_language">
+            
+                    <div v-else>{{ serie.original_language }}</div>
+                </li>
+                <li>Vote: {{ serie.vote_average }}</li>
+            </ul>
+            <!-- End Series -->
         </div>
     </div>
 
