@@ -25,6 +25,7 @@
 
             <!-- Start Movie -->
             <ul v-for="movie in searchedMovies" class="movie">
+                <li><img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" :alt="movie.title"></li>
                 <li>Title: {{ movie.title }}</li>
                 <li>Original Title: {{ movie.original_title }}</li>
                 <li class="flag">
@@ -39,6 +40,7 @@
 
             <!-- Start Series -->
             <ul v-for="serie in searchedSeries" class="movie">
+                <li><img :src="`https://image.tmdb.org/t/p/w342${serie.poster_path}`" :alt="serie.name"></li>
                 <li>Name: {{ serie.name }}</li>
                 <li>Original Name: {{ serie.name }}</li>
                 <li class="flag">
