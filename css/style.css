@@ -1,3 +1,16 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* END RESET */
+
+/* COMMON */
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 .flag img{
     width: 20px;
 }
@@ -5,3 +18,37 @@
 .yellow-star{
     color: yellow;
 }
+
+li img{
+    width: 100px;
+}
+/* END COMMON */
+
+/* HEADER */
+header{
+    background-color: #000;
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header .logo img{
+    display: block;
+    width: 120px;
+}
+
+header .searchbar button,
+header .searchbar input{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 0;
+    margin-left: 20px;
+}
+header .searchbar input{
+    width: 200px;
+}
+/* END HEADER */
+
+/* MAIN */
+/* END MAIN */

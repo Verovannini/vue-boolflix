@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolflix</title>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 
@@ -14,14 +17,24 @@
 </head>
 <body>
     <div id="root">
-        <div class="container">
-            <!-- Start Searchbar -->
-            <div class="searchbar">
-                <label for="search-input">Search</label>
-                <input v-model="userSearch" @keyup.enter="searchMovieAndSeries" type="text" id="search-input" placeholder="Search">
-                <button @click="searchMovieAndSeries">Search</button>
-            </div>
-            <!-- End Searchbar -->
+        <div class="app-wrapper">
+            <!-- START HEADER -->
+            <header>
+                <!-- Start Logo -->
+                <div class="logo">
+                    <img src="img/logo.png" alt="Logo">
+                </div>
+                <!-- End Logo -->
+
+                <!-- Start Searchbar -->
+                <div class="searchbar">
+                    <label hidden for="search-input">Search</label>
+                    <input v-model="userSearch" @keyup.enter="searchMovieAndSeries" type="text" id="search-input" placeholder="Search">
+                    <button @click="searchMovieAndSeries">Search</button>
+                </div>
+                <!-- End Searchbar -->
+            </header>
+            <!-- END HEADER -->
 
             <!-- Start Movie -->
             <ul v-for="(element, index) in searchedMoviesAndSeries" class="movie">
@@ -35,8 +48,8 @@
 
                 <!-- Original title -->
                 <li>
-                    <div v-if="'original_title' in searchedMoviesAndSeries[index]">Original Title: {{ element.original_title }}</div>
-                    <div v-else-if="'original_name' in searchedMoviesAndSeries[index]">Original Title: {{ element.original_name }}</div>
+                    <div v-if="('original_title' in searchedMoviesAndSeries[index]) && (element.title != element.original_title)">Original Title: {{ element.original_title }}</div>
+                    <div v-else-if="'original_name' in searchedMoviesAndSeries[index] && (element.name != element.name)">Original Title: {{ element.original_name }}</div>
                 </li>
 
                 <!-- Language or flag -->
