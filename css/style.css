@@ -11,16 +11,9 @@ body{
     font-family: 'Roboto', sans-serif;
 }
 
-.flag img{
-    width: 20px;
-}
-
-.yellow-star{
-    color: yellow;
-}
-
-li img{
-    width: 100px;
+.bold-text{
+    font-weight: 700;
+    padding-right: 3px;
 }
 /* END COMMON */
 
@@ -31,6 +24,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 60px;
 }
 
 header .logo img{
@@ -51,4 +45,65 @@ header .searchbar input{
 /* END HEADER */
 
 /* MAIN */
+main{
+    height: calc( 100vh - 60px );
+    background-color: #1c1a1c;
+    overflow-y: auto;
+}
+
+main .cards-container{
+    padding: 40px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main .cards-container .card{
+    padding: 5px;
+    width: calc( 100% / 4 );
+}
+main .cards-container .card .poster{
+    width: 100%;
+    display: block;
+}
+
+main .cards-container .card-inner{
+    position: relative;
+    overflow-y: hidden;
+}
+
+main .cards-container .layover{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+}
+
+main .cards-container .card-inner:hover .layover{
+    display: block;
+}
+
+main .cards-container .card-info{
+    color: #fff;
+    padding: 20px;
+    line-height: 30px;
+    overflow-y: auto;
+    height: 100%;
+}
+main .cards-container .card-info .overview{
+    line-height: normal;
+}
+
+main .cards-container .card-info .flag img{
+    width: 20px;
+    vertical-align: middle;
+}
+main .cards-container .card-info .vote{
+    display: flex;
+}
+main .cards-container .card-info .yellow-star{
+    color: yellow;
+}
 /* END MAIN */

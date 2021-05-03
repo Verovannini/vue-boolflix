@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Boolflix</title>
 
+    <!-- Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome and Css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Axios and Vue -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
@@ -36,38 +39,58 @@
             </header>
             <!-- END HEADER -->
 
-            <!-- Start Movie -->
-            <ul v-for="(element, index) in searchedMoviesAndSeries" class="movie">
-                <li><img :src="`https://image.tmdb.org/t/p/w342${element.poster_path}`" :alt="element.title"></li>
+            <!-- START MAIN -->
+            <main>
+                <div class="cards-container">
+                    <!-- Start Movie -->
+                    <div v-for="(element, index) in searchedMoviesAndSeries" class="card">
+                        <div class="card-inner">
+                            <img :src="`https://image.tmdb.org/t/p/w342${element.poster_path}`" :alt="element.title" class="poster">
 
-                <!-- Title -->
-                <li>
-                    <div v-if="'title' in searchedMoviesAndSeries[index]">Title: {{ element.title }}</div>
-                    <div v-else-if="'name' in searchedMoviesAndSeries[index]">Title: {{ element.name }}</div>
-                </li>
+                            <div class="layover">
+                                <div class="card-info">
+                                    <!-- Title -->
+                                    <div>
+                                        <div v-if="'title' in searchedMoviesAndSeries[index]"><span class="bold-text">Title: </span>{{ element.title }}</div>
+                                        <div v-else-if="'name' in searchedMoviesAndSeries[index]"><span class="bold-text">Title: </span>{{ element.name }}</div>
+                                    </div>
+    
+                                    <!-- Original title -->
+                                    <div>
+                                        <div v-if="('original_title' in searchedMoviesAndSeries[index]) && (element.title != element.original_title)"><span class="bold-text">Original Title: </span>{{ element.original_title }}</div>
+                                        <div v-else-if="'original_name' in searchedMoviesAndSeries[index] && (element.name != element.name)"><span class="bold-text">Original Title: </span>{{ element.original_name }}</div>
+                                    </div>
+    
+                                    <!-- Language or flag -->
+                                    <div class="flag">
+                                        <div>
+                                            <span class="bold-text">Language: </span> 
+                                            <img v-if="element.original_language in flags" :src="flags[element.original_language]" :alt="element.original_language">
+                                        </div>
+                                
+                                        <div v-else><span class="bold-text">Language: </span> {{ element.original_language }}</div>
+                                    </div>
+    
+                                    <!-- Vote -->
+                                    <div class="vote">
+                                        <span class="bold-text">Vote: </span> 
+                                        <span v-for="number in Math.ceil(element.vote_average / 2)" class="yellow-star"><i class="fas fa-star"></i></span>
+                                        <span v-for="number in (5 - Math.ceil(element.vote_average / 2))"><i class="fas fa-star"></i></span>
+                                    </div>
 
-                <!-- Original title -->
-                <li>
-                    <div v-if="('original_title' in searchedMoviesAndSeries[index]) && (element.title != element.original_title)">Original Title: {{ element.original_title }}</div>
-                    <div v-else-if="'original_name' in searchedMoviesAndSeries[index] && (element.name != element.name)">Original Title: {{ element.original_name }}</div>
-                </li>
-
-                <!-- Language or flag -->
-                <li class="flag">
-                    Language:
-                    <img v-if="element.original_language in flags" :src="flags[element.original_language]" :alt="element.original_language">
-            
-                    <div v-else>{{ element.original_language }}</div>
-                </li>
-
-                <!-- Vote -->
-                <li>
-                    Vote: 
-                    <span v-for="number in Math.ceil(element.vote_average / 2)" class="yellow-star"><i class="fas fa-star"></i></span>
-                    <span v-for="number in (5 - Math.ceil(element.vote_average / 2))"><i class="fas fa-star"></i></span>
-                </li>
-            </ul>
-            <!-- End Movie -->
+                                    <!-- Overview -->
+                                    <div class="overview">
+                                        <span class="bold-text">Overview: </span>{{ element.overview }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!-- End Movie -->
+                </div>
+            </main>
+            <!-- END MAIN -->
         </div>
     </div>
 
