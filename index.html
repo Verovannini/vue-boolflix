@@ -41,9 +41,9 @@
 
             <!-- START MAIN -->
             <main>
-                <div class="cards-container">
+                <div v-if="searchedMoviesAndSeries.length > 0" class="cards-container">
                     <!-- Start Movie -->
-                    <div v-for="(element, index) in searchedMoviesAndSeries" class="card">
+                    <div v-if="element.poster_path != null" v-for="(element, index) in searchedMoviesAndSeries" class="card">
                         <div class="card-inner">
                             <img :src="`https://image.tmdb.org/t/p/w342${element.poster_path}`" :alt="element.title" class="poster">
 
@@ -63,9 +63,9 @@
     
                                     <!-- Language or flag -->
                                     <div class="flag">
-                                        <div>
+                                        <div v-if="element.original_language in flags">
                                             <span class="bold-text">Language: </span> 
-                                            <img v-if="element.original_language in flags" :src="flags[element.original_language]" :alt="element.original_language">
+                                            <img :src="flags[element.original_language]" :alt="element.original_language">
                                         </div>
                                 
                                         <div v-else><span class="bold-text">Language: </span> {{ element.original_language }}</div>
@@ -89,6 +89,9 @@
                     </div>
                     <!-- End Movie -->
                 </div>
+
+                <!-- No results -->
+                <div v-else class="no-results">No results found</div>
             </main>
             <!-- END MAIN -->
         </div>

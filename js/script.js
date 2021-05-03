@@ -17,7 +17,7 @@ var app = new Vue (
                 es: 'https://lipis.github.io/flag-icon-css/flags/4x3/es.svg'
             },
 
-            apiKey: '86aa4c6e9326e99a2398f49eac5855b2'
+            apiKey: '86aa4c6e9326e99a2398f49eac5855b2',
         },
         methods: {
             // Funzione che manda una chiamata all'API quando l'utente preme il button o preme enter
