@@ -50,19 +50,19 @@
                             <div class="layover">
                                 <div class="card-info">
                                     <!-- Title -->
-                                    <div>
+                                    <div class="padd-bott">
                                         <div v-if="'title' in searchedMoviesAndSeries[index]"><span class="bold-text">Title: </span>{{ element.title }}</div>
                                         <div v-else-if="'name' in searchedMoviesAndSeries[index]"><span class="bold-text">Title: </span>{{ element.name }}</div>
                                     </div>
     
                                     <!-- Original title -->
                                     <div>
-                                        <div v-if="('original_title' in searchedMoviesAndSeries[index]) && (element.title != element.original_title)"><span class="bold-text">Original Title: </span>{{ element.original_title }}</div>
-                                        <div v-else-if="'original_name' in searchedMoviesAndSeries[index] && (element.name != element.name)"><span class="bold-text">Original Title: </span>{{ element.original_name }}</div>
+                                        <div v-if="('original_title' in searchedMoviesAndSeries[index]) && (element.title != element.original_title)" class="padd-bott"><span class="bold-text">Original Title: </span>{{ element.original_title }}</div>
+                                        <div v-else-if="'original_name' in searchedMoviesAndSeries[index] && (element.name != element.name)" class="padd-bott"><span class="bold-text">Original Title: </span>{{ element.original_name }}</div>
                                     </div>
     
                                     <!-- Language or flag -->
-                                    <div class="flag">
+                                    <div class="flag padd-bott">
                                         <div v-if="element.original_language in flags">
                                             <span class="bold-text">Language: </span> 
                                             <img :src="flags[element.original_language]" :alt="element.original_language">
@@ -72,14 +72,14 @@
                                     </div>
     
                                     <!-- Vote -->
-                                    <div class="vote">
+                                    <div class="vote padd-bott">
                                         <span class="bold-text">Vote: </span> 
                                         <span v-for="number in Math.ceil(element.vote_average / 2)" class="yellow-star"><i class="fas fa-star"></i></span>
                                         <span v-for="number in (5 - Math.ceil(element.vote_average / 2))"><i class="fas fa-star"></i></span>
                                     </div>
 
                                     <!-- Overview -->
-                                    <div class="overview">
+                                    <div class="overview padd-bott">
                                         <span class="bold-text">Overview: </span>{{ element.overview }}
                                     </div>
                                 </div>

@@ -23,26 +23,21 @@ var app = new Vue (
             // Funzione che manda una chiamata all'API quando l'utente preme il button o preme enter
             searchMovieAndSeries() {
                 if ( this.userSearch != '' ) {
-                    this.callApi('https://api.themoviedb.org/3/search/multi');
+                    axios
+                        .get( 'https://api.themoviedb.org/3/search/multi' , {
+                            params: {
+                                api_key: this.apiKey,
+                                query: this.userSearch
+                            }
+                        })
+                        .then( (response) => {
+                            const result = response.data;
+                            this.searchedMoviesAndSeries = result.results;
+                        });
                 }
             },
 
-            // Funzione che effettua una chiamata all'API
-            // 
-            // endpoint --> endpoint per effettuare la chiamata
-            callApi(endpoint) {
-                axios
-                    .get( endpoint , {
-                        params: {
-                            api_key: this.apiKey,
-                            query: this.userSearch
-                        }
-                    })
-                    .then( (response) => {
-                        const result = response.data;
-                        this.searchedMoviesAndSeries = result.results;
-                    });
-            }
+            
         }
     }
 );

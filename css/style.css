@@ -15,6 +15,10 @@ body{
     font-weight: 700;
     padding-right: 3px;
 }
+
+.padd-bott{
+    padding-bottom: 10px;
+}
 /* END COMMON */
 
 /* HEADER */
@@ -88,12 +92,8 @@ main .cards-container .card-inner:hover .layover{
 main .cards-container .card-info{
     color: #fff;
     padding: 20px;
-    line-height: 30px;
     overflow-y: auto;
     height: 100%;
-}
-main .cards-container .card-info .overview{
-    line-height: normal;
 }
 
 main .cards-container .card-info .flag img{
